@@ -1,10 +1,10 @@
 class_name InventoryFile extends Node
 
-const IMAGE_DEFAULT = "res://addons/inventory_slot_plugin/assets/imagens/life.png"
+const IMAGE_DEFAULT = "res://addons/inventory_slot_plugin/assets/item_image/life.png"
 const JSON_PATH = "res://addons/inventory_slot_plugin/json/"
 const SYSTEM_PATH = JSON_PATH + "system/"
 const SAVE_PATH = JSON_PATH + "save/"
-const ITEM_PANEL_PATH = SYSTEM_PATH + "items.json"
+const ITEM_PANEL_PATH = SYSTEM_PATH + "item_panel.json"
 const PANEL_SLOT_PATH = SYSTEM_PATH + "panel_slot.json"
 const ITEM_SETTINGS = SYSTEM_PATH + "item_settings.json"
 const ITEM_INVENTORY_PATH = SAVE_PATH + "inventory.json"

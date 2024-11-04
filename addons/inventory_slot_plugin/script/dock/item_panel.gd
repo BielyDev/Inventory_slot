@@ -61,7 +61,7 @@ func file_selection(path: String) -> void:
 		SELECTION.SCENE:
 			scene.text = path
 			
-			InventoryFile.search_item(inventory,get_parent().my_class_name,item_name).path_scene = path
+			InventoryFile.search_item(inventory,get_parent().my_class_name,item_name).scene = path
 			InventoryFile.push_inventory(inventory, InventoryFile.ITEM_PANEL_PATH)
 
 
