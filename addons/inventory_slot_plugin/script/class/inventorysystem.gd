@@ -43,7 +43,7 @@ static func _create_json_path(_path: String,_extension: StringName, _create_file
 		_extension = "json"
 	
 	if !DirAccess.dir_exists_absolute(_path):
-		printerr("This folder doesn1't exist, it's impossible to create a directory!")
+		printerr("This folder doesn't exist, it's impossible to create a directory!")
 		return
 	
 	var _json_path: String = _path

@@ -61,21 +61,22 @@ static func list_all_item_inventory(_panel_id: int = -1) -> Array:
 	
 	return _all_items
 
-static func list_all_item_panel(_panel_id: int = -1) -> Array:
+static func list_all_item_panel(_class_name: StringName = "") -> Array:
 	var _inventory = pull_inventory(Inventory.ITEM_PANEL_PATH)
 	
 	var _all_items: Array
 	
-	if _panel_id == -1:
+	if _class_name == "":
 		for _class in _inventory:
 			for _items in _inventory.get(_class):
 				
 				_all_items.append(_inventory.get(_class).get(_items))
 	else:
 		for _class in _inventory:
-			for _items in _inventory.get(_class):
+			if _class == _class_name:
 				
-				if _panel_id == _inventory.get(_items).panel_id:
+				for _items in _inventory.get(_class):
+					
 					_all_items.append(_inventory.get(_class).get(_items))
 	
 	return _all_items
@@ -155,6 +156,19 @@ static func get_item_name(_unique_id_item: int) -> StringName:
 				return _items
 	
 	return ""
+
+static func get_item_panel(_unique_id_item: int) -> Dictionary:
+	
+	var _all_items = pull_inventory(Inventory.ITEM_PANEL_PATH)
+	
+	for _class in _all_items:
+		for _items in _all_items.get(_class):
+			
+			if _all_items.get(_class).get(_items).unique_id == _unique_id_item:
+				
+				return _all_items.get(_class).get(_items)
+	
+	return {}
 
 static func get_class_name(_unique_id_item: int) -> StringName:
 	
