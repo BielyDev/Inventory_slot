@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://qpmdv0j3mri4"]
+
+[ext_resource type="Script" uid="uid://c6lxvrrg7d8gj" path="res://addons/inventory_slot_plugin/script/dock/add_metadata.gd" id="1_7jrxx"]
+
+[node name="add_metadata" type="PanelContainer"]
+offset_right = 200.0
+offset_bottom = 40.0
+script = ExtResource("1_7jrxx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 0.6156863)
+
+[node name="Center" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+
+[node name="hbox" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="Name" type="LineEdit" parent="Center/VBox/hbox"]
+layout_mode = 2
+placeholder_text = "Name"
+
+[node name="String" type="LineEdit" parent="Center/VBox/hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "String"
+
+[node name="hs" type="HSeparator" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="hbox2" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="Ok" type="Button" parent="Center/VBox/hbox2"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "OK"
+
+[node name="Cancel" type="Button" parent="Center/VBox/hbox2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[connection signal="text_changed" from="Center/VBox/hbox/Name" to="." method="_on_name_text_changed"]
+[connection signal="pressed" from="Center/VBox/hbox2/Ok" to="." method="_on_ok_pressed"]
+[connection signal="pressed" from="Center/VBox/hbox2/Cancel" to="." method="_on_cancel_pressed"]

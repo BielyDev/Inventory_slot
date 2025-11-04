@@ -70,7 +70,6 @@ func _on_remove_pressed() -> void:
 			panels.erase(panel)
 	
 	InventoryFile.push_inventory(panels ,Inventory.PANEL_SLOT_PATH)
-	
 	Inventory.changed_panel_data.emit()
 	
 	queue_free()

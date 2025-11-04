@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://da4aaqpi5d8kv"]
 
 [ext_resource type="Texture2D" uid="uid://drdt8v1j8h6sb" path="res://addons/inventory_slot_plugin/assets/icons/slot_show_button.tres" id="1_k3ij2"]
-[ext_resource type="Script" path="res://addons/inventory_slot_plugin/script/class/buttonvisible.gd" id="2_o68ly"]
+[ext_resource type="Script" uid="uid://dvfwflh6c4b1u" path="res://addons/inventory_slot_plugin/script/class/buttonvisible.gd" id="2_o68ly"]
 [ext_resource type="Texture2D" uid="uid://cpov2vpvvqtgt" path="res://addons/inventory_slot_plugin/assets/icons/slot_hide_button.tres" id="3_q43ub"]
 
 [node name="Documentation" type="PanelContainer"]
@@ -94,6 +94,30 @@ size_flags_horizontal = 3
 text = "    Use Inventory.remove_item(0,1) for removed item"
 autowrap_mode = 1
 
+[node name="get_metadataButton" type="Button" parent="scroll/hbox/buttons/basicbuttons/buttons" node_paths=PackedStringArray("NodeVisible")]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "get metadata"
+icon = ExtResource("3_q43ub")
+alignment = 0
+script = ExtResource("2_o68ly")
+NodeVisible = NodePath("../get_metadata")
+
+[node name="get_metadata" type="HBoxContainer" parent="scroll/hbox/buttons/basicbuttons/buttons"]
+visible = false
+layout_mode = 2
+
+[node name="vs" type="VSeparator" parent="scroll/hbox/buttons/basicbuttons/buttons/get_metadata"]
+layout_mode = 2
+
+[node name="text" type="Label" parent="scroll/hbox/buttons/basicbuttons/buttons/get_metadata"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "  Use Inventory.get_metadata( item_unique_id ) to get the metadata of the specified item.
+"
+autowrap_mode = 1
+
 [node name="Script" type="Button" parent="scroll/hbox/buttons" node_paths=PackedStringArray("NodeVisible")]
 layout_mode = 2
 focus_mode = 0
@@ -177,7 +201,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/propertieslist/buttons/SAVE_PATH/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Caminho em que é salvo todos os arquivos."
+text = "Directory where all files are saved."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/propertieslist/buttons/SAVE_PATH/text"]
@@ -214,7 +238,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/propertieslist/buttons/ITEM_PANEL_PATH/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Local do arquivo que salva os itens em paineis. ( class / itens )"
+text = "File path where the panel items are saved. (class / items)"
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/propertieslist/buttons/ITEM_PANEL_PATH/text"]
@@ -251,7 +275,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/propertieslist/buttons/ITEM_INVENTORY_PATH/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Local do arquivo que salva os itens em inventario. ( itens de todos os SlotPanel em jogo. )"
+text = "File path where all inventory items are saved. (items from all SlotPanels in the game)"
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/propertieslist/buttons/ITEM_INVENTORY_PATH/text"]
@@ -288,7 +312,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/propertieslist/buttons/PANEL_SLOT_PATH/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Local do arquivo que salva todos os paineis."
+text = "Path to the file that stores all panels."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/propertieslist/buttons/PANEL_SLOT_PATH/text"]
@@ -325,7 +349,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/propertieslist/buttons/ITEM_SETTINGS/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Predefinições dos slots."
+text = "Slot presets."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/propertieslist/buttons/ITEM_SETTINGS/text"]
@@ -407,7 +431,7 @@ selection_enabled = true
 modulate = Color(0.709375, 0.709375, 0.709375, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Note: caso o inventario esteja cheio, será retornado um array com o erro e a sobra dos itens: [erro, sobra]."
+text = "Note: If the inventory is full, an array will be returned containing the error and the remaining items: [error, remainder]."
 autowrap_mode = 2
 
 [node name="remove_itemButton" type="Button" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons" node_paths=PackedStringArray("NodeVisible")]
@@ -451,7 +475,7 @@ selection_enabled = true
 modulate = Color(0.709375, 0.709375, 0.709375, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Note: o id é a indentificação do item em inventario, use metodos que puxam do inventario."
+text = "Note: The ID is the item’s identifier in the inventory. Use methods that fetch data from the inventory."
 autowrap_mode = 2
 
 [node name="set_panel_item_itemButton" type="Button" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons" node_paths=PackedStringArray("NodeVisible")]
@@ -478,7 +502,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/set_panel_item/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    Use Inventory.set_panel_item() para setar um item em um painel."
+text = "Use the Inventory.set_panel_item() method to assign an item to a panel."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/set_panel_item/text"]
@@ -495,7 +519,7 @@ selection_enabled = true
 modulate = Color(0.709375, 0.709375, 0.709375, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Note: caso o inventario esteja cheio, retorna os espaços que sobram em array."
+text = "Note: When the inventory is full, an array containing the remaining available slots is returned."
 autowrap_mode = 2
 
 [node name="set_slot_item_itemButton" type="Button" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons" node_paths=PackedStringArray("NodeVisible")]
@@ -522,7 +546,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/set_slot_item/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    Use Inventory.set_panel_item() para setar um item em um slot."
+text = "Use the Inventory.set_panel_item() method to assign an item to a slot."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/set_slot_item/text"]
@@ -559,7 +583,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/changed_slots_item/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    Use Inventory.changed_slots_items() para trocar a posição de 2 itens."
+text = "Use the Inventory.changed_slots_items() method to exchange the positions of two items."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/changed_slots_item/text"]
@@ -567,6 +591,44 @@ layout_mode = 2
 focus_mode = 2
 bbcode_enabled = true
 text = "[color=aquamarine]Inventory[/color].[color=aqua]changed_slots_items[/color](_one_item, _two_item)"
+fit_content = true
+scroll_active = false
+context_menu_enabled = true
+selection_enabled = true
+
+[node name="get_metadataButton" type="Button" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons" node_paths=PackedStringArray("NodeVisible")]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "get metadata"
+icon = ExtResource("3_q43ub")
+alignment = 0
+script = ExtResource("2_o68ly")
+NodeVisible = NodePath("../get_metadata")
+
+[node name="get_metadata" type="HBoxContainer" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons"]
+visible = false
+layout_mode = 2
+
+[node name="vs" type="VSeparator" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/get_metadata"]
+layout_mode = 2
+
+[node name="text" type="VBoxContainer" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/get_metadata"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/get_metadata/text"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Use Inventory.get_metadata( item_unique_id ) to get the metadata of the specified item.
+"
+autowrap_mode = 2
+
+[node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/get_metadata/text"]
+layout_mode = 2
+focus_mode = 2
+bbcode_enabled = true
+text = "[color=aquamarine]Inventory[/color].[color=aqua]get_metadata[/color](_item_unique_id)"
 fit_content = true
 scroll_active = false
 context_menu_enabled = true
@@ -605,7 +667,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_item/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    Use Inventory.search_item() para procurar um item com base seu painel, o uso do argumento _slot irar fazer com que o _item_unique_id seja ignorado."
+text = "Use the Inventory.search_item() method to find an item by its panel. If the _slot argument is provided, the _item_unique_id parameter will be ignored."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_item/text"]
@@ -622,7 +684,7 @@ selection_enabled = true
 modulate = Color(0.709375, 0.709375, 0.709375, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Note: retornará o primeiro item encontrado com item_unique_id."
+text = "Note: Returns the first item found with the given item_unique_id."
 autowrap_mode = 2
 
 [node name="search_item_inventoryButton" type="Button" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons" node_paths=PackedStringArray("NodeVisible")]
@@ -649,7 +711,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_item_inventory/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    Use Inventory.search_item_inventory() procura um item com base seu painel."
+text = "Use Inventory.search_item_inventory() to search for an item based on its panel."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_item_inventory/text"]
@@ -666,7 +728,7 @@ selection_enabled = true
 modulate = Color(0.709375, 0.709375, 0.709375, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Note: item_id é o id do item no inventario."
+text = "Note: item_id is the item's ID in the inventory."
 autowrap_mode = 2
 
 [node name="search_panel_id_itemButton" type="Button" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons" node_paths=PackedStringArray("NodeVisible")]
@@ -693,7 +755,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_panel_id_item/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    O Inventory.search_panel_id_item() irar em busca de um item em todos os paineis."
+text = "The Inventory.search_panel_id_item() method searches for an item in all panels."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_panel_id_item/text"]
@@ -710,7 +772,7 @@ selection_enabled = true
 modulate = Color(0.709375, 0.709375, 0.709375, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Note: item_id é o id do item no inventario."
+text = "Note: The item_id represents the item’s identifier within the inventory."
 autowrap_mode = 2
 
 [node name="search_void_slotButton" type="Button" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons" node_paths=PackedStringArray("NodeVisible")]
@@ -737,7 +799,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_void_slot/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    O Inventory.search_void_slot() irar fazer uma busca por um slot vazio."
+text = "The Inventory.search_void_slot() method searches for an empty slot in the inventory."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_void_slot/text"]
@@ -774,7 +836,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_item_amount_min/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    Use Inventory.search_item_amount_min() procura pelo item com menor amontoado no momento."
+text = "Use the Inventory.search_item_amount_min() method to find the item that currently has the lowest stack amount."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_item_amount_min/text"]
@@ -820,7 +882,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/_append_item/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    O Inventory._append_item() adiciona um item diretamente no inventario sem passar por condições ou filtros."
+text = "The Inventory._append_item() method directly adds an item to the inventory without applying any conditions or filters."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/_append_item/text"]
@@ -857,7 +919,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/_append_item_filter_slot_amount/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    O Inventory._append_item_filter_slot_amount() adiciona um item passando pela filtragem de amontoado do item."
+text = "The Inventory._append_item_filter_slot_amount() method adds an item to the inventory, applying the stack amount filtering."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/_append_item_filter_slot_amount/text"]
@@ -933,7 +995,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/is_json/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    Use InventoryFile.is_json() para verificar se o arquivo é um json aceitavel."
+text = "Use InventoryFile.is_json() to check if the file is a valid JSON."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/is_json/text"]
@@ -970,7 +1032,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/pull_inventory/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    O InventoryFile.pull_inventory() irar ler o arquivo passado e retornar em dicionario."
+text = "InventoryFile.pull_inventory() reads the given file and returns it as a dictionary."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/pull_inventory/text"]
@@ -1007,7 +1069,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/push_inventory/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    O InventoryFile.pull_inventory() irar enviar o dicionario ao arquivo."
+text = "The InventoryFile.pull_inventory() method writes the given dictionary to the specified file."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/push_inventory/text"]
@@ -1044,7 +1106,7 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/list_all_class/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    O InventoryFile.list_all_class() irar retornar todas as classes."
+text = "InventoryFile.list_all_class() returns all classes."
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/list_all_class/text"]
@@ -1081,7 +1143,8 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/list_all_item_inventory/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    O InventoryFile.list_all_item_inventory() irar retornar todos os itens do inventario em um painel."
+text = "InventoryFile.list_all_item_inventory() returns all inventory items in a panel.
+"
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/list_all_item_inventory/text"]
@@ -1118,7 +1181,8 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/list_all_item_panel/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    O InventoryFile.list_all_item_panel() irar retornar todos os itens em paineis."
+text = "InventoryFile.list_all_item_panel() returns all items in panels.
+"
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/list_all_item_panel/text"]
@@ -1155,7 +1219,8 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/list_all_panel/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    O InventoryFile.list_all_panel() irar retornar todos os paineis."
+text = "InventoryFile.list_all_panel() returns all panels.
+"
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/list_all_panel/text"]
@@ -1192,7 +1257,8 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/get_panel/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    O InventoryFile.get_panel() irar retornar um dicionario."
+text = "InventoryFile.get_panel() returns a dictionary.
+"
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/get_panel/text"]
@@ -1229,7 +1295,8 @@ size_flags_horizontal = 3
 [node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/get_panel_with_unique_id/text"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "    O InventoryFile.get_panel_with_unique_id() irar retornar um dicionario."
+text = "InventoryFile.get_panel_with_unique_id() returns a dictionary.
+"
 autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/get_panel_with_unique_id/text"]
@@ -1263,6 +1330,13 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/get_item_name/text"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "InventoryFile.get_item_name() returns the name of the item with the specified unique_id.
+"
+autowrap_mode = 2
+
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/get_item_name/text"]
 layout_mode = 2
 focus_mode = 2
@@ -1293,6 +1367,13 @@ layout_mode = 2
 [node name="text" type="VBoxContainer" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/get_class_name"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/get_class_name/text"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "InventoryFile.get_item_class() returns the class of the item with the specified unique_id.
+"
+autowrap_mode = 2
 
 [node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventoryfilelist/ScriptS/methlist/buttons/get_class_name/text"]
 layout_mode = 2

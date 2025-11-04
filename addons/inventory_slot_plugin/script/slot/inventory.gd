@@ -230,6 +230,15 @@ func changed_slots_items(item_one: Dictionary, item_two: Dictionary) -> void:
 	add_item(panel_one.id,one.unique_id,one.amount,two.slot,one.id,true)
 	add_item(panel_two.id,two.unique_id,two.amount,one.slot,two.id,true)
 
+func get_metadata(_item_unique_id: int) -> Dictionary:
+	var inventory = InventoryFile.pull_inventory(ITEM_PANEL_PATH)
+	
+	var item = InventoryFile.search_item(inventory, InventoryFile.get_class_name(_item_unique_id), InventoryFile.get_item_name(_item_unique_id))
+	if item != null:
+		return item.metadata
+	else:
+		printerr("get_metadata - item_unique_id is invalid.")
+		return {}
 #---------------------------------------------------------
 
 ## Searchs -----------------------------------------------

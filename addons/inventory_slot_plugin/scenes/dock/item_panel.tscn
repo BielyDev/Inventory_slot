@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://ep1uy3n0w0d1"]
+[gd_scene load_steps=11 format=3 uid="uid://ep1uy3n0w0d1"]
 
 [ext_resource type="Texture2D" uid="uid://duojnn1y01u2x" path="res://addons/inventory_slot_plugin/assets/item_image/life.png" id="1_h3lic"]
-[ext_resource type="Script" path="res://addons/inventory_slot_plugin/script/dock/item_panel.gd" id="1_l311a"]
+[ext_resource type="Script" uid="uid://dobh8087cfwhw" path="res://addons/inventory_slot_plugin/script/dock/item_panel.gd" id="1_l311a"]
 [ext_resource type="Texture2D" uid="uid://cpov2vpvvqtgt" path="res://addons/inventory_slot_plugin/assets/icons/slot_hide_button.tres" id="2_1kig7"]
-[ext_resource type="Script" path="res://addons/inventory_slot_plugin/script/class/buttonvisible.gd" id="2_ifphx"]
+[ext_resource type="Script" uid="uid://dvfwflh6c4b1u" path="res://addons/inventory_slot_plugin/script/class/buttonvisible.gd" id="2_ifphx"]
 [ext_resource type="Texture2D" uid="uid://b3gjbet1fqlon" path="res://addons/inventory_slot_plugin/assets/icons/slot_more.tres" id="4_101el"]
 [ext_resource type="Texture2D" uid="uid://fpmoxkao1nxc" path="res://addons/inventory_slot_plugin/assets/icons/slot_remove_button.tres" id="4_xst28"]
 [ext_resource type="Texture2D" uid="uid://vcqdmhm3l70u" path="res://addons/inventory_slot_plugin/assets/icons/slot_rename.tres" id="6_pcyvm"]
+[ext_resource type="Texture2D" uid="uid://c2254e60ufuh0" path="res://addons/inventory_slot_plugin/assets/icons/slot_add.tres" id="8_02b3j"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wckgx"]
 
@@ -76,6 +77,7 @@ icon = ExtResource("6_pcyvm")
 alignment = 2
 
 [node name="Hbox" type="HBoxContainer" parent="Vbox"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -197,6 +199,20 @@ size_flags_horizontal = 10
 placeholder_text = "Item description"
 wrap_mode = 1
 
+[node name="hs" type="HSeparator" parent="Vbox/Hbox/Panel/Vbox/Bar/Vbox"]
+layout_mode = 2
+
+[node name="metadata" type="VBoxContainer" parent="Vbox/Hbox/Panel/Vbox/Bar/Vbox"]
+layout_mode = 2
+
+[node name="AddMetadata" type="Button" parent="Vbox/Hbox/Panel/Vbox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Add Metadata"
+icon = ExtResource("8_02b3j")
+
 [connection signal="gui_input" from="Vbox/TopBar/Hbox/id_unique" to="." method="_on_id_unique_gui_input"]
 [connection signal="pressed" from="Vbox/TopBar/Hbox/More/vbox/Remove" to="." method="_on_remove_pressed"]
 [connection signal="pressed" from="Vbox/TopBar/Hbox/More/vbox/EditName" to="." method="_on_edit_name_pressed"]
@@ -205,3 +221,4 @@ wrap_mode = 1
 [connection signal="value_changed" from="Vbox/Hbox/Panel/Vbox/Bar/Vbox/amount/max_amount" to="." method="_on_max_amount_value_changed"]
 [connection signal="pressed" from="Vbox/Hbox/Panel/Vbox/Bar/Vbox/scene/scene" to="." method="_on_scene_pressed"]
 [connection signal="text_changed" from="Vbox/Hbox/Panel/Vbox/Bar/Vbox/description/description" to="." method="_on_description_text_changed"]
+[connection signal="pressed" from="Vbox/Hbox/Panel/Vbox/AddMetadata" to="." method="_on_add_metadata_pressed"]

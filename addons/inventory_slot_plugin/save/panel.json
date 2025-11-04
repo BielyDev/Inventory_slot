@@ -1,7 +1,7 @@
 {
 	"Void": {
 		"class_unique": "all",
-		"id": -2,
-		"slot_amount": 15
+		"id": -2.0,
+		"slot_amount": 15.0
 	}
 }

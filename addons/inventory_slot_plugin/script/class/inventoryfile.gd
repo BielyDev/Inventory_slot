@@ -275,7 +275,8 @@ static func new_item_panel(_class_name: String,_icon_path: String = Inventory.IM
 				"icon" : _icon_path,
 				"max_amount" : _amount,
 				"description" : _description,
-				"scene" : _path_scene
+				"scene" : _path_scene,
+				"metadata" : {}
 			}
 	
 	return _new_inventory

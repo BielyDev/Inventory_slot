@@ -4,6 +4,9 @@ extends TypePanel
 
 enum SELECTION {ICON,SCENE}
 
+const ADD_METADATA = preload("res://addons/inventory_slot_plugin/scenes/dock/add_metadata.tscn")
+const METADATA = preload("res://addons/inventory_slot_plugin/scenes/dock/metadata.tscn")
+
 @onready var icon: Button = %Icon
 @onready var edit_item_name: LineEdit = %item_name
 @onready var scene: Button = %scene
@@ -12,6 +15,7 @@ enum SELECTION {ICON,SCENE}
 @onready var hbox: HBoxContainer = $Vbox/Hbox
 @onready var id: SpinBox = %id
 @onready var description: TextEdit = %description
+@onready var metadata: VBoxContainer = $Vbox/Hbox/Panel/Vbox/Bar/Vbox/metadata
 
 
 var item_name: String
@@ -33,9 +37,20 @@ func start(_item_name: String,_item: Dictionary) -> void:
 
 func update_visual() -> void:
 	edit_item_name.text = item_name
-	id_unique.text = str(item.unique_id," - ",item_name)
-	id.value = item.unique_id
+	id_unique.text = str(int(item.unique_id)," - ",item_name)
+	id.value = int(item.unique_id)
 	description.text = item.description
+	
+	for child: Control in metadata.get_children():
+		child.queue_free()
+	
+	for meta: String in item.metadata:
+		var meta_intance = METADATA.instantiate()
+		
+		meta_intance.metadata_name = meta
+		meta_intance.item_panel_node = self
+		
+		metadata.add_child(meta_intance)
 
 
 
@@ -126,3 +141,10 @@ func _on_edit_name_pressed() -> void:
 	
 	edit_item_name.grab_focus()
 	edit_item_name.select_all()
+
+
+func _on_add_metadata_pressed() -> void:
+	var add_popup = ADD_METADATA.instantiate()
+	add_popup.item_unique_id = item.unique_id
+	
+	add_child(add_popup)

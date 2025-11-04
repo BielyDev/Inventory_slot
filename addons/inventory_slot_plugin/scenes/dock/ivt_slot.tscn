@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://b8w5wbmaey2hq"]
 
 [ext_resource type="Theme" uid="uid://dlmvgp744mykf" path="res://addons/inventory_slot_plugin/assets/themes/default.tres" id="1_1w27d"]
-[ext_resource type="Script" path="res://addons/inventory_slot_plugin/script/dock/ivt_slot.gd" id="1_tkquw"]
+[ext_resource type="Script" uid="uid://ctp8yyflmr82m" path="res://addons/inventory_slot_plugin/script/dock/ivt_slot.gd" id="1_tkquw"]
 [ext_resource type="Texture2D" uid="uid://becu4ghipl448" path="res://addons/inventory_slot_plugin/assets/icons/slot_reload.tres" id="3_o3b3d"]
 [ext_resource type="Texture2D" uid="uid://boxdvtor8gb8m" path="res://addons/inventory_slot_plugin/assets/icons/slot_theme_default.tres" id="4_n2hf1"]
 [ext_resource type="Texture2D" uid="uid://bwwgylpwkgmf4" path="res://addons/inventory_slot_plugin/assets/icons/slot_save_inventory.tres" id="4_q2ndl"]
@@ -127,7 +127,7 @@ icon_alignment = 1
 modulate = Color(1, 1, 1, 0.180392)
 layout_mode = 2
 size_flags_horizontal = 10
-text = "v0.9.0"
+text = "v0.10.0"
 
 [node name="hs" type="HSeparator" parent="Scroll/Panels"]
 layout_mode = 2
