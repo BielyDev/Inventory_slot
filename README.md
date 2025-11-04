@@ -84,6 +84,8 @@ NOTE: IMPORTANTLY, THE PLUGIN NEEDS THE ADDONS FOLDER.
 	Inventory.set_slot_item(_panel_item: Dictionary, _item_inventory: Dictionary, _slot: int = -1, _unique: bool = true)
   #### Swap 2 slot items.
 	Inventory.func changed_slots_items(item_one: Dictionary, item_two: Dictionary)`
+  #### Using `get_metadata(_item_unique_id)`, you can get the metadata of the specified item. If it doesn’t exist, it will simply return an empty dictionary.  
+	Inventory.get_metadata(_item_unique_id: int)
 
 
 ## InventoryFile ( Class )
