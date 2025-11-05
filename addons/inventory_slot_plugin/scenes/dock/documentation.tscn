@@ -674,13 +674,57 @@ autowrap_mode = 2
 layout_mode = 2
 focus_mode = 2
 bbcode_enabled = true
-text = "[color=aquamarine]Inventory[/color].[color=aqua]search_item[/color](_panel_id, _item_unique_id, _slot)"
+text = "[color=aquamarine]Inventory[/color].[color=aqua]search_item[/color](_item_unique_id, _slot)"
 fit_content = true
 scroll_active = false
 context_menu_enabled = true
 selection_enabled = true
 
 [node name="text2" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_item/text"]
+modulate = Color(0.709375, 0.709375, 0.709375, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Note: Returns the first item found with the given item_unique_id."
+autowrap_mode = 2
+
+[node name="search_item_in_panelButton" type="Button" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons" node_paths=PackedStringArray("NodeVisible")]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "search item in panel"
+icon = ExtResource("3_q43ub")
+alignment = 0
+script = ExtResource("2_o68ly")
+NodeVisible = NodePath("../search_item_in_panel")
+
+[node name="search_item_in_panel" type="HBoxContainer" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons"]
+visible = false
+layout_mode = 2
+
+[node name="vs" type="VSeparator" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_item_in_panel"]
+layout_mode = 2
+
+[node name="text" type="VBoxContainer" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_item_in_panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="text" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_item_in_panel/text"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Use the Inventory.search_item_in_panel() method to find an item by its panel. If the _slot argument is provided, the _item_unique_id parameter will be ignored."
+autowrap_mode = 2
+
+[node name="script" type="RichTextLabel" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_item_in_panel/text"]
+layout_mode = 2
+focus_mode = 2
+bbcode_enabled = true
+text = "[color=aquamarine]Inventory[/color].[color=aqua]search_item_in_panel[/color](_panel_id: int, _item_unique_id, _slot)"
+fit_content = true
+scroll_active = false
+context_menu_enabled = true
+selection_enabled = true
+
+[node name="text2" type="Label" parent="scroll/hbox/buttons/h_files/Files/inventorylist/ScriptS/methlist/buttons/search_item_in_panel/text"]
 modulate = Color(0.709375, 0.709375, 0.709375, 1)
 layout_mode = 2
 size_flags_horizontal = 3

@@ -139,7 +139,7 @@ func remove_item(_panel_id: int, _id: int = -1, _slot: int = -1) -> bool:
 	return false
 
 func set_panel_item(_item_id: int, _out_panel_id: int, _new_panel_id:int, _slot: int = -1, _unique: bool = false, _out_item_remove: bool = true):
-	var _item_inventory: Dictionary = search_item_inventory(_out_panel_id,_item_id)
+	var _item_inventory: Dictionary = search_item_inventory(_item_id)
 	
 	if _out_item_remove:
 		remove_item(_out_panel_id,_item_id)
@@ -242,7 +242,7 @@ func get_metadata(_item_unique_id: int) -> Dictionary:
 #---------------------------------------------------------
 
 ## Searchs -----------------------------------------------
-func search_item(_panel_id: int, _item_unique_id: int = -1, _slot: int = -1):
+func search_item(_item_unique_id: int = -1, _slot: int = -1):
 	var _all_items: Dictionary = InventoryFile.pull_inventory(ITEM_INVENTORY_PATH)
 	
 	if _slot != -1:
@@ -256,7 +256,25 @@ func search_item(_panel_id: int, _item_unique_id: int = -1, _slot: int = -1):
 	
 	return null
 
-func search_item_inventory(_panel_id: int, _item_id: int = -1):
+func search_item_in_panel(_panel_id: int, _item_unique_id: int = -1, _slot: int = -1):
+	var _all_items: Dictionary = InventoryFile.pull_inventory(ITEM_INVENTORY_PATH)
+	
+	for _item: String in _all_items:
+		var item: Dictionary = _all_items.get(_item)
+		
+		print(" : ",search_panel_id_item(item.id))
+		if search_panel_id_item(item.id) == _panel_id:
+			if _slot != -1:
+				if item.slot == _slot:
+					return _all_items.get(_item)
+			
+			if _item_unique_id != -1:
+				if item.unique_id == _item_unique_id:
+					return _all_items.get(_item)
+	
+	return null
+
+func search_item_inventory(_item_id: int = -1):
 	var _all_items: Dictionary = InventoryFile.pull_inventory(ITEM_INVENTORY_PATH)
 	
 	for _item: String in _all_items:

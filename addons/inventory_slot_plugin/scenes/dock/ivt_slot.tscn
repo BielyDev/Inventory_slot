@@ -127,7 +127,7 @@ icon_alignment = 1
 modulate = Color(1, 1, 1, 0.180392)
 layout_mode = 2
 size_flags_horizontal = 10
-text = "v0.10.0"
+text = "v0.10.1"
 
 [node name="hs" type="HSeparator" parent="Scroll/Panels"]
 layout_mode = 2

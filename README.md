@@ -76,8 +76,10 @@ NOTE: IMPORTANTLY, THE PLUGIN NEEDS THE ADDONS FOLDER.
 	Inventory.add_item(_panel_id: int, _item_unique_id: int, _amount: int = 1, _slot: int = -1, _id: int = -1, _unique: bool = false)
   #### Remove the item from a panel, give the id of the panel to `_panel_id`, and the `id` of the item in the inventory.
 	Inventory.remove_item(_panel_id: Dictionary, _id: int = -1)
-  #### Search for items in a panel using `search_item`, give the `unique_id` of the item in `_item_unique_id`.
-	Inventory.search_item(_panel_id: int, _item_unique_id: int = -1, _path : String = "",_slot: int = -1)
+  #### Search for all items using `search_item`. Provide the item's `unique_id` in `_item_unique_id`.
+	Inventory.search_item(_item_unique_id: int = -1, _path: String = "", _slot: int = -1)
+  #### Search for items in a specific panel using `search_item_in_panel`. Provide the item's `unique_id` in `_item_unique_id`.
+	Inventory.search_item_in_panel(_panel_id: int, _item_unique_id: int = -1, _path: String = "", _slot: int = -1)
   #### Exchange panel items.
 	Inventory.set_panel_item(_item_id: int, _out_panel_id: int, _new_panel_id:int, _slot: int = -1, _unique: bool = false, _out_item_remove: bool = true)
   #### Change the slot of an item.
