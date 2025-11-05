@@ -2,7 +2,7 @@
 # Inventory Slot Plugin
 The Inventory Slot Plugin is an addon for Godot 4.3.x, designed to simplify and speed up the implementation of inventory systems in games. With an intuitive interface and a robust system, it allows you to manage items efficiently.
 
-<img alt="Static Badge" src="https://img.shields.io/badge/current%20version-0.9.0-red">
+<img alt="Static Badge" src="https://img.shields.io/badge/current%20version-0.10.0-red">
 <img alt="Static Badge" src="https://img.shields.io/badge/Godot-4.5.x-blue?style=flat">
 <img alt="Static Badge" src="https://img.shields.io/badge/Godot-4.4.x-blue?style=flat">
 <img alt="Static Badge" src="https://img.shields.io/badge/Godot-4.3.x-blue?style=flat">
@@ -86,6 +86,8 @@ NOTE: IMPORTANTLY, THE PLUGIN NEEDS THE ADDONS FOLDER.
 	Inventory.set_slot_item(_panel_item: Dictionary, _item_inventory: Dictionary, _slot: int = -1, _unique: bool = true)
   #### Swap 2 slot items.
 	Inventory.func changed_slots_items(item_one: Dictionary, item_two: Dictionary)`
+  #### Using `get_metadata(_item_unique_id)`, you can get the metadata of the specified item. If it doesn’t exist, it will simply return an empty dictionary.  
+	Inventory.get_metadata(_item_unique_id: int)
 
 
 ## InventoryFile ( Class )
