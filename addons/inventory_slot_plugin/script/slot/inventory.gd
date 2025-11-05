@@ -262,7 +262,6 @@ func search_item_in_panel(_panel_id: int, _item_unique_id: int = -1, _slot: int 
 	for _item: String in _all_items:
 		var item: Dictionary = _all_items.get(_item)
 		
-		print(" : ",search_panel_id_item(item.id))
 		if search_panel_id_item(item.id) == _panel_id:
 			if _slot != -1:
 				if item.slot == _slot:
